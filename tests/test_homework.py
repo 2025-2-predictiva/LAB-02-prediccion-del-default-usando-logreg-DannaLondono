@@ -69,6 +69,7 @@ def _test_components(model):
     """Test components"""
     assert "GridSearchCV" in str(type(model))
     current_components = [str(model.estimator[i]) for i in range(len(model.estimator))]
+    #print(current_components)
     for component in MODEL_COMPONENTS:
         assert any(component in x for x in current_components)
 
@@ -108,6 +109,7 @@ def _load_metrics():
 def _test_metrics(metrics):
 
     for index in [0, 1]:
+        
         assert metrics[index]["type"] == METRICS[index]["type"]
         assert metrics[index]["dataset"] == METRICS[index]["dataset"]
         assert metrics[index]["precision"] > METRICS[index]["precision"]
@@ -138,3 +140,4 @@ def test_homework():
     _test_components(model)
     _test_scores(model, x_train, y_train, x_test, y_test)
     _test_metrics(metrics)
+
